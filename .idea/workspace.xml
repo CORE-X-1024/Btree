@@ -7,7 +7,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="insert todo 3 barn is done">
+    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="INSERT DONE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
@@ -83,7 +83,7 @@
       <updated>1710319487485</updated>
       <workItem from="1710319489447" duration="7912000" />
       <workItem from="1710329674352" duration="2675000" />
-      <workItem from="1710351835299" duration="6651000" />
+      <workItem from="1710351835299" duration="9497000" />
     </task>
     <task id="LOCAL−00001" summary="added todo">
       <option name="closed" value="true" />
@@ -113,7 +113,14 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1710357242032</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="INSERT DONE">
+      <option name="closed" value="true" />
+      <created>1710358855953</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1710358855953</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +142,7 @@
     <MESSAGE value="added todo" />
     <MESSAGE value="ruddet opp" />
     <MESSAGE value="insert todo 3 barn is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="insert todo 3 barn is done" />
+    <MESSAGE value="INSERT DONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="INSERT DONE" />
   </component>
 </project>

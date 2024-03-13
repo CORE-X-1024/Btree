@@ -131,18 +131,20 @@ impl Node{
             _ => panic!("{}", self.edges.len()),
         }
     }
+
 }
 
 
 impl BTree{
 
-    fn new() -> BTree{ BTree { root : Node::new() } }
+    pub fn new() -> BTree{ BTree { root : Node::new() } }
 
     pub fn add(&mut self, key : i32){
 
         if self.root.keys.len()< 3 {
 
             self.root.insert_key(key);
+
 
         } else {
 
@@ -191,8 +193,6 @@ impl BTree{
 
 
 
-
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -201,7 +201,7 @@ mod tests {
     fn it_works() {
 
         let mut tree = BTree::new();
-        for i in 1..=52  {
+        for i in 1..= 13 {
             tree.add(i);
         }
 
@@ -211,12 +211,5 @@ mod tests {
             println!("Egde {}: {:?}", i, tree.root.edges[i].keys);
 
         }
-        println!("test treet");
-        println!("{:?}", tree.root.edges[0]);
-        println!("{:?}", tree.root.edges[1]);
-
-
-
-
     }
 }
