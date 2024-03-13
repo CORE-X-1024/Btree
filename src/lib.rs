@@ -1,6 +1,3 @@
-
-
-
 use  std::collections::VecDeque;
 
 #[derive(Debug)]
@@ -25,6 +22,7 @@ impl Node{
         let len = self.edges.len();
 
         match len {
+            //ingen barn
             0 => {
                 //self sort
                 let len_key = self.keys.len();
@@ -42,6 +40,7 @@ impl Node{
                     }
                 }
             },
+
             //To barn
             2 => {
                 //sjekk enhverbarn sin keys.
@@ -55,7 +54,7 @@ impl Node{
                             self.keys.insert(0, self.edges[0].keys.remove(1).unwrap());
                             // og Splitt node
                             let key_0 = self.edges[0].keys.pop_front().unwrap();
-                            self.edges.push_front(Node::new());
+                            self.edges.insert(0,Node::new());
                             self.edges[0].keys.push_front(key_0);
                             //insert key
                             self.edges[0].insert_key(key);
@@ -64,6 +63,7 @@ impl Node{
                             self.edges[0].insert_key(key);
                         },
                     }
+
                 } else {
 
                     let barn_keys_len = self.edges[1].keys.len();
@@ -74,7 +74,7 @@ impl Node{
                             self.keys.push_back(self.edges[1].keys.remove(1).unwrap());
                             // og Splitt node
                             let key_1 = self.edges[1].keys.pop_back().unwrap();
-                            self.edges.push_back(Node::new());
+                            self.edges.insert(2,Node::new());
                             self.edges[1].keys.push_front(key_1);
                             //insert key
                             self.edges[1].insert_key(key);
@@ -83,13 +83,11 @@ impl Node{
                             self.edges[1].insert_key(key);
                         },
                     }
-
                 }
             },
+            //todo 3 barn og 4 barn
             _ => (),
         }
-
-
     }
 }
 
@@ -124,11 +122,10 @@ impl BTree{
 
                     self.root.insert_key(key);
                 },
+                //todo 2,3 og 4 barn
                 _ => println!("ll"),
             }
         }
-
-            //splitt node
     }
 }
 
@@ -149,7 +146,12 @@ mod tests {
             tree.add(i);
         }
 
-        println!("{:?}", tree.root);
+        println!("{:?}", tree.root.keys);
+        let len = tree.root.edges.len();
+        for i in 0..len  {
+            println!("Egde {}: {:?}", i, tree.root.edges[i].keys);
+
+        }
 
 
     }
