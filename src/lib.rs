@@ -127,8 +127,8 @@ impl Node{
                 }
             }
 
-            //todo 3 barn og 4 barn
-            _ => (),
+            //todo 4 barn
+            _ => panic!("{}", self.edges.len()),
         }
     }
 }
@@ -159,8 +159,30 @@ impl BTree{
 
                     self.root.insert_key(key);
                 },
-                //todo 2,3 og 4 barn
-                _ => println!("ll"),
+                4 => {
+
+                    //Opprett 2 barn
+                    let mut child0 = Node::new();
+                    let mut child1 = Node::new();
+
+                    //flytte keys til nye barn.
+                    child0.keys.push_back(self.root.keys.pop_front().unwrap());
+                    child1.keys.push_back(self.root.keys.pop_back().unwrap());
+
+                    //flytte barn fra root til barn som deres barn.
+                    child0.edges.push_back(self.root.edges.pop_front().unwrap());
+                    child0.edges.push_back(self.root.edges.pop_front().unwrap());
+                    child1.edges.push_back(self.root.edges.pop_front().unwrap());
+                    child1.edges.push_back(self.root.edges.pop_front().unwrap());
+
+                    self.root.edges.push_back(child0);
+                    self.root.edges.push_back(child1);
+
+                    self.root.insert_key(key);
+
+                }
+                //todo 2,3  barn
+                _ => panic!("{}",self.root.edges.len()),
             }
         }
     }
@@ -179,7 +201,7 @@ mod tests {
     fn it_works() {
 
         let mut tree = BTree::new();
-        for i in 1..=8  {
+        for i in 1..=52  {
             tree.add(i);
         }
 
@@ -189,6 +211,11 @@ mod tests {
             println!("Egde {}: {:?}", i, tree.root.edges[i].keys);
 
         }
+        println!("test treet");
+        println!("{:?}", tree.root.edges[0]);
+        println!("{:?}", tree.root.edges[1]);
+
+
 
 
     }
