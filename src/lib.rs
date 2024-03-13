@@ -1,4 +1,5 @@
 use  std::collections::VecDeque;
+use std::os::fd::AsRawFd;
 
 #[derive(Debug)]
 pub struct Node{
@@ -24,12 +25,9 @@ impl Node{
             0 => {
                 //self sort
                 let len_key = self.keys.len();
-                if self.keys.is_empty(){
-
+                if self.keys.is_empty() {
                     self.keys.push_back(key);
-
                 } else {
-
                     for i in 0..len_key {
                         if key < self.keys[i] {
                             self.keys.insert(i, key);
@@ -40,7 +38,6 @@ impl Node{
                     if key > self.keys[len_key - 1] {
                         self.keys.push_back(key);
                     }
-
                 }
             },
 
@@ -56,7 +53,7 @@ impl Node{
                             self.keys.insert(0, self.edges[0].keys.remove(1).unwrap());
                             // og Splitt node
                             let key_0 = self.edges[0].keys.pop_front().unwrap();
-                            self.edges.insert(0,Node::new());
+                            self.edges.insert(0, Node::new());
                             self.edges[0].keys.push_front(key_0);
                             //insert key
                             self.edges[0].insert_key(key);
@@ -65,7 +62,6 @@ impl Node{
                             self.edges[0].insert_key(key);
                         },
                     }
-
                 } else {
 
                     //sjekk antall keys i barna
@@ -75,10 +71,10 @@ impl Node{
                             self.keys.push_back(self.edges[1].keys.remove(1).unwrap());
                             // og Splitt node
                             let key_1 = self.edges[1].keys.pop_back().unwrap();
-                            self.edges.insert(2,Node::new());
-                            self.edges[1].keys.push_front(key_1);
+                            self.edges.push_back(Node::new());
+                            self.edges[2].keys.push_front(key_1);
                             //insert key
-                            self.edges[1].insert_key(key);
+                            self.edges[2].insert_key(key);
                         },
                         _ => {
                             self.edges[1].insert_key(key);
@@ -86,6 +82,51 @@ impl Node{
                     }
                 }
             },
+            //Tre barn
+            3 => {
+                //Finn hvilket egde vi skal gå
+                let key_len = self.keys.len();
+                for i in 0..key_len {
+
+                    if key < self.keys[i] {
+                        //Hvis barnen har max keys //Max keys --> splits and move up
+                        if self.edges[i].keys.len() == 3 {
+                            //Flytt median opp til keys, front.
+                            self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
+                            //refere til en ny egde
+                            let key_0 = self.edges[i].keys.pop_front().unwrap();
+                            self.edges.insert(i, Node::new());
+                            self.edges[i].insert_key(key_0);
+                            //innsett ny key etter splitt
+                            self.edges[i].insert_key(key);
+                            return;
+
+                        } else {
+
+                            self.edges[i].insert_key(key);
+                            return;
+                        }
+                    }
+                }
+
+                //Hvis keys er høyest
+                if key > self.keys[1] {
+                    //Sjekk om barn har maks keys
+                    if self.edges[key_len].keys.len() == 3 {
+
+                        self.keys.push_back(self.edges[key_len].keys.remove(1).unwrap());
+                        let key_2 = self.edges[key_len].keys.pop_back().unwrap();
+
+                        self.edges.push_back( Node::new());
+                        self.edges[key_len+1].insert_key(key_2);
+
+                        self.edges[key_len+1].insert_key(key);
+                    } else {
+                        self.edges[key_len].insert_key(key);
+                    }
+                }
+            }
+
             //todo 3 barn og 4 barn
             _ => (),
         }
@@ -138,7 +179,7 @@ mod tests {
     fn it_works() {
 
         let mut tree = BTree::new();
-        for i in (0..=5).rev()  {
+        for i in 1..=8  {
             tree.add(i);
         }
 

@@ -7,9 +7,10 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="">
+    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="ruddet opp">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,14 +84,51 @@
       <option name="presentableId" value="Default" />
       <updated>1710319487485</updated>
       <workItem from="1710319489447" duration="7912000" />
-      <workItem from="1710329674352" duration="368000" />
+      <workItem from="1710329674352" duration="2675000" />
+      <workItem from="1710351835299" duration="5092000" />
     </task>
+    <task id="LOCAL−00001" summary="added todo">
+      <option name="closed" value="true" />
+      <created>1710330046910</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1710330046911</updated>
+    </task>
+    <task id="LOCAL−00002" summary="added todo">
+      <option name="closed" value="true" />
+      <created>1710330050134</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1710330050134</updated>
+    </task>
+    <task id="LOCAL−00003" summary="ruddet opp">
+      <option name="closed" value="true" />
+      <created>1710332309004</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1710332309004</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added todo" />
+    <MESSAGE value="ruddet opp" />
+    <option name="LAST_COMMIT_MESSAGE" value="ruddet opp" />
   </component>
 </project>
