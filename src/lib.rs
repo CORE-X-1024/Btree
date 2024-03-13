@@ -19,25 +19,28 @@ impl Node{
     fn insert_key(&mut self, key : i32){
 
         //Sjekk om det finnes edges
-        let len = self.edges.len();
-
-        match len {
+        match self.edges.len() {
             //ingen barn
             0 => {
                 //self sort
                 let len_key = self.keys.len();
                 if self.keys.is_empty(){
+
                     self.keys.push_back(key);
+
                 } else {
+
                     for i in 0..len_key {
                         if key < self.keys[i] {
                             self.keys.insert(i, key);
                             break;
                         }
                     }
+
                     if key > self.keys[len_key - 1] {
                         self.keys.push_back(key);
                     }
+
                 }
             },
 
@@ -46,9 +49,8 @@ impl Node{
                 //sjekk enhverbarn sin keys.
                 if key < self.keys[0] {
 
-                    let barn_keys_len = self.edges[0].keys.len();
                     //sjekk antall keys i barna
-                    match barn_keys_len {
+                    match self.edges[0].keys.len() {
                         3 => {
                             //flytt median opp
                             self.keys.insert(0, self.edges[0].keys.remove(1).unwrap());
@@ -66,9 +68,8 @@ impl Node{
 
                 } else {
 
-                    let barn_keys_len = self.edges[1].keys.len();
                     //sjekk antall keys i barna
-                    match barn_keys_len {
+                    match self.edges[1].keys.len() {
                         3 => {
                             //flytt median opp
                             self.keys.push_back(self.edges[1].keys.remove(1).unwrap());
@@ -94,22 +95,17 @@ impl Node{
 
 impl BTree{
 
-    fn new() -> BTree{
-        BTree { root : Node::new() }
-    }
+    fn new() -> BTree{ BTree { root : Node::new() } }
 
     pub fn add(&mut self, key : i32){
 
-
-        let len_keys = self.root.keys.len();
-        if len_keys < 3 {
+        if self.root.keys.len()< 3 {
 
             self.root.insert_key(key);
 
         } else {
 
-            let len_e = self.root.edges.len();
-            match len_e {
+            match self.root.edges.len() {
                 0 => {
                     let mut child0 = Node::new();
                     let mut child1 = Node::new();
