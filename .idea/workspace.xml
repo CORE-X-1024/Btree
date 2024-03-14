@@ -7,10 +7,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="BUGS FIXED">
+    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="BUG2 FIXED">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
+    <list id="38ef1060-494a-4f39-86f5-f1cc774a7c4b" name="FIXED BUG" comment="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +79,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="" />
+      <changelist id="38ef1060-494a-4f39-86f5-f1cc774a7c4b" name="FIXED BUG" comment="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
       <created>1710319487485</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -85,7 +87,7 @@
       <workItem from="1710319489447" duration="7912000" />
       <workItem from="1710329674352" duration="2675000" />
       <workItem from="1710351835299" duration="9664000" />
-      <workItem from="1710366146931" duration="6666000" />
+      <workItem from="1710366146931" duration="9985000" />
     </task>
     <task id="LOCAL−00001" summary="added todo">
       <option name="closed" value="true" />
@@ -136,7 +138,21 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1710370631851</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="ny bug">
+      <option name="closed" value="true" />
+      <created>1710373070871</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1710373070871</updated>
+    </task>
+    <task id="LOCAL−00009" summary="BUG2 FIXED">
+      <option name="closed" value="true" />
+      <created>1710402256969</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1710402256969</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +177,9 @@
     <MESSAGE value="INSERT DONE" />
     <MESSAGE value="BUGS is found" />
     <MESSAGE value="BUGS FIXED" />
-    <option name="LAST_COMMIT_MESSAGE" value="BUGS FIXED" />
+    <MESSAGE value="ny bug" />
+    <MESSAGE value="BUG2 FIXED" />
+    <MESSAGE value="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
+    <option name="LAST_COMMIT_MESSAGE" value="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
   </component>
 </project>

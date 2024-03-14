@@ -77,7 +77,7 @@ impl Node{
                                 }
                             },
                             _ => {
-                                self.insert_key(key);
+                                self.edges[i].insert_key(key);
                                 return;
                             },
                         }
@@ -187,21 +187,23 @@ mod tests {
     fn it_works() {
 
         let mut tree = BTree::new();
-        for i in 1..= 11 {
+        for i in 1..= 20 {
             tree.add(i);
         }
 
         println!("root : {:?}", tree.root.keys);
+
         let len = tree.root.edges.len();
         for i in 0..len  {
-            println!("leaves{}: {:?}", i, tree.root.edges[i].keys);
+            println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
             let len2 = tree.root.edges[i].edges.len();
             for j in 0..len2  {
-                println!("leaves{}.leefs{}: {:?}", i, j, tree.root.edges[i].edges[j].keys);
+                print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
 
                 let len3 = tree.root.edges[i].edges[j].edges.len();
                 for k in 0..len3  {
-                    println!("leaves{}.leefs{}.more{}: {:?}", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
+                    println!("");
+                    print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
                 }
             }
 
