@@ -7,7 +7,8 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="BUGS FIXED">
+    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="NY BUG en siste kanskje">
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
@@ -190,7 +191,14 @@
       <option name="presentableId" value="LOCAL−00014" />
       <updated>1710454965051</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL−00015" summary="NY BUG en siste kanskje">
+      <option name="closed" value="true" />
+      <created>1710457184782</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1710457184783</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +215,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -233,6 +241,7 @@
     <MESSAGE value="TRansfer to codespace test" />
     <MESSAGE value="NEW BUGS, rev insert error&#10;+ Print medthod" />
     <MESSAGE value="BUGS FIXED" />
-    <option name="LAST_COMMIT_MESSAGE" value="BUGS FIXED" />
+    <MESSAGE value="NY BUG en siste kanskje" />
+    <option name="LAST_COMMIT_MESSAGE" value="NY BUG en siste kanskje" />
   </component>
 </project>

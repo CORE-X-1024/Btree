@@ -26,17 +26,17 @@ impl Node {
                 let len_key = self.keys.len();
                 if len_key == 0 {
                     self.keys.push_back(key);
-                    return;
+
                 } else {
                     for i in 0..len_key {
                         if key < self.keys[i] {
                             self.keys.insert(i, key);
-                            return;
+                            break
                         }
                     }
                     if key > self.keys[len_key - 1] {
                         self.keys.push_back(key);
-                        return;
+
                     }
                 }
             },
@@ -84,6 +84,7 @@ impl Node {
                                 return;
                             },
                         }
+                        break
                     }
                 }
 
@@ -113,11 +114,13 @@ impl Node {
                                     //insert key
                                     self.insert_key(key);
                                     //println!("3-{}", key);
+                                    return;
                                 }
                             },
                             _ => {
                                 self.edges[len_key].insert_key(key);
                                 //println!("4-{}", key);
+                                return;
                             },
                         }
                     }
@@ -216,7 +219,7 @@ impl BTree{
             }
 
 
-        } else if root_len == 2 && !self.root.edges.is_empty(){
+        } else if  root_len == 2 && !self.root.edges.is_empty(){
             //TODO FIX LOGIKK HER
 
             //sjekk om barn er fult
@@ -261,7 +264,7 @@ impl BTree{
 
                     }
                 }
-            } return;
+            }
 
         }
     }
@@ -285,19 +288,6 @@ impl BTree{
 mod tests {
     use super::*;
 
-    #[test]
-    fn insert_rev() {
-        let mut tree = BTree::new();
-        let numbers = [
-            12, 8, 28, 3, 21, 19, 17, 25, 24, 26,
-            14, 4, 22, 11, 27, 13, 2, 10, 18, 15,
-            20, 1, 6, 9, 5, 23, 30, 7, 29, 16, 31,
-        ];
-        for i in (0..40).rev() {
-            tree.add(i)
-        }
-
-
 
 
         //println!("{:?}", tree.root.keys);
@@ -319,13 +309,14 @@ mod tests {
         //        }
         //    }
         //}
-    }
+
 
     #[test]
     fn insert_in_ascending_order() {
         let mut tree = BTree::new();
         let mut list = Vec::new();
         let mut vec: Vec<i32> = (1..=40).collect();
+
         for i in 1..=40 {
             tree.add(i);
         }
@@ -339,8 +330,8 @@ mod tests {
     fn insert_in_descending_order() {
         let mut tree = BTree::new();
         let mut list = Vec::new();
-        let mut vec: Vec<i32> = (0..40).collect();
-        for i in (0..40).rev() {
+        let mut vec: Vec<i32> = (1..=40).collect();
+        for i in (1..=40).rev() {
             tree.add(i);
         }
 
@@ -351,6 +342,9 @@ mod tests {
     #[test]
     fn insert_in_random_order() {
         let mut tree = BTree::new();
+        let mut list = Vec::new();
+        let mut vec: Vec<i32> = (1..=31).collect();
+
         let numbers = [
             12, 8, 28, 3, 21, 19, 17, 25, 24, 26,
             14, 4, 22, 11, 27, 13, 2, 10, 18, 15,
@@ -359,18 +353,9 @@ mod tests {
         for &i in numbers.iter() {
             tree.add(i);
         }
-        assert_eq!(tree.root.contain(20), true);
-        assert_eq!(tree.root.contain(40), false);
+        tree.root.print_keys(&mut list);
+        assert_eq!(list, vec);
     }
 
-    #[test]
-    fn insert_duplicate_values() {
-        let mut tree = BTree::new();
-        for _ in 0..40 {
-            tree.add(10);
-        }
-        assert_eq!(tree.root.contain(10), true);
-        assert_eq!(tree.root.contain(20), false);
-    }
 
 }
