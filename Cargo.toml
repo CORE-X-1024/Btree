@@ -6,3 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[profile.release]
+debug = true
+
+[[test]]
+name = "test_it_works"
+path = "src/lib.rs"
+
+
+

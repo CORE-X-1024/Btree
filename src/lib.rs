@@ -1,11 +1,12 @@
+use std::collections::hash_map::Keys;
 use  std::collections::VecDeque;
 
 #[derive(Debug)]
 pub struct Node{
-    keys: VecDeque<i32>,
+    pub keys: VecDeque<i32>,
     edges: VecDeque<Node>,
 }
-pub struct BTree{ root : Node }
+pub struct BTree{ pub root : Node }
 
 impl Node{
 
@@ -121,8 +122,30 @@ impl Node{
             }
         }
     }
+    fn contain(&self, key : i32) -> bool {
 
-    fn print_keys_recursively(&self) {
+        let len = self.keys.len();
+        for i in 0..len  {
+
+            if key < self.keys[i] {
+                if self.edges.is_empty() {
+                    return false
+                } else { return self.edges[i].contain(key);}
+
+            } else if key == self.keys[i] {
+                return true;
+            }
+        }
+
+        if key > self.keys[len - 1] {
+
+            if self.edges.is_empty() {
+                return false
+            } else {
+                return self.edges[len].contain(key);
+            }
+        }
+        false
     }
 
 }
@@ -176,10 +199,15 @@ impl BTree{
         }
     }
 
-    pub fn print_keys(&self) {
-        self.root.print_keys_recursively();
-    }
+    pub fn find(&self, key : i32) {
+        let is_present = self.root.contain(key);
 
+        if is_present {
+            println!("Key {} Ok.", key);
+        } else {
+            println!("Key {} None.", key);
+        }
+    }
 
 }
 
@@ -194,12 +222,14 @@ mod tests {
     fn test_it_works() {
 
         let mut tree = BTree::new();
-        for i in 1..= 1000000 {
+        for i in 1..= 10000 {
             tree.add(i)
         }
 
+        println!("{:?}", tree.root.keys);
+        println!("{:?}", tree.find(100000));
 
-        //println!("{:?}", tree.root.keys);
+
         //let len = tree.root.edges.len();
         //for i in 0..len  {
         //    println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
