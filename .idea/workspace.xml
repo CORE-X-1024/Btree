@@ -7,10 +7,8 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="TRansfer to codespace test">
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
+    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="NEW BUGS, rev insert error&#10;+ Print medthod">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
     <list id="38ef1060-494a-4f39-86f5-f1cc774a7c4b" name="FIXED BUG" comment="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
@@ -171,7 +169,14 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1710413664608</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary="NEW BUGS, rev insert error&#10;+ Print medthod">
+      <option name="closed" value="true" />
+      <created>1710447938822</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1710447938822</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +187,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -201,6 +218,7 @@
     <MESSAGE value="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
     <MESSAGE value="add som print" />
     <MESSAGE value="TRansfer to codespace test" />
-    <option name="LAST_COMMIT_MESSAGE" value="TRansfer to codespace test" />
+    <MESSAGE value="NEW BUGS, rev insert error&#10;+ Print medthod" />
+    <option name="LAST_COMMIT_MESSAGE" value="NEW BUGS, rev insert error&#10;+ Print medthod" />
   </component>
 </project>
