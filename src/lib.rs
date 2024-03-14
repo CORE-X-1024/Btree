@@ -288,6 +288,22 @@ impl BTree{
 mod tests {
     use super::*;
 
+    #[test]
+    fn insert_in_ascending_order2() {
+        let mut tree = BTree::new();
+        let mut list = Vec::new();
+        let mut vec: Vec<i32> = (1..=10000000).collect();
+
+        for i in 1..=10000000 {
+            tree.add(i);
+        }
+
+        tree.root.print_keys(&mut list);
+        assert_eq!(list, vec);
+    }
+
+
+
 
 
         //println!("{:?}", tree.root.keys);
