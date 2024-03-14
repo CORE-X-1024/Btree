@@ -80,7 +80,7 @@ impl Node {
                             },
                             _ => {
                                 self.edges[i].insert_key(key);
-                                println!("1-{}", key);
+                                //println!("1-{}", key);
                                 return;
                             },
                         }
@@ -117,7 +117,7 @@ impl Node {
                             },
                             _ => {
                                 self.edges[len_key].insert_key(key);
-                                println!("4-{}", key);
+                                //println!("4-{}", key);
                             },
                         }
                     }
@@ -305,25 +305,25 @@ mod tests {
         println!("{:?}", tree.find(100000));
 
 
-        println!("{:?}", tree.root.keys);
-        let len = tree.root.edges.len();
-        for i in 0..len {
-            println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
-            let len2 = tree.root.edges[i].edges.len();
-            for j in 0..len2 {
-                print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
-                let len3 = tree.root.edges[i].edges[j].edges.len();
-                for k in 0..len3 {
-                    println!("");
-                    print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
-                    let len4 = tree.root.edges[i].edges[j].edges[k].edges.len();
-                    for m in 0..len4 {
-                        println!("");
-                        print!("leaves{}.leefs{}.more{}.more{}: {:?}   ", i, j, k, m, tree.root.edges[i].edges[j].edges[k].edges[m].keys);
-                    }
-                }
-            }
-        }
+        //println!("{:?}", tree.root.keys);
+        //let len = tree.root.edges.len();
+        //for i in 0..len {
+        //    println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
+        //    let len2 = tree.root.edges[i].edges.len();
+        //    for j in 0..len2 {
+        //        print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
+        //        let len3 = tree.root.edges[i].edges[j].edges.len();
+        //        for k in 0..len3 {
+        //            println!("");
+        //            print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
+        //            let len4 = tree.root.edges[i].edges[j].edges[k].edges.len();
+        //            for m in 0..len4 {
+        //                println!("");
+        //                print!("leaves{}.leefs{}.more{}.more{}: {:?}   ", i, j, k, m, tree.root.edges[i].edges[j].edges[k].edges[m].keys);
+        //            }
+        //        }
+        //    }
+        //}
 
     }
 }
