@@ -8,16 +8,15 @@ pub struct Node{
 }
 pub struct BTree{ pub root : Node }
 
-impl Node{
-
-    fn new() -> Node{
-        Node{
-            keys : VecDeque::new(),
+impl Node {
+    fn new() -> Node {
+        Node {
+            keys: VecDeque::new(),
             edges: VecDeque::new(),
         }
     }
 
-    fn insert_key(&mut self, key : i32){
+    fn insert_key(&mut self, key: i32) {
 
         //Sjekk om det finnes edges
         match self.edges.len() {
@@ -25,13 +24,13 @@ impl Node{
             0 => {
                 //self sort
                 let len_key = self.keys.len();
-                if len_key == 0{
+                if len_key == 0 {
                     self.keys.push_back(key);
                 } else {
                     for i in 0..len_key {
                         if key < self.keys[i] {
                             self.keys.insert(i, key);
-                            return;
+                            break
                         }
                     }
                     if key > self.keys[len_key - 1] {
@@ -42,53 +41,50 @@ impl Node{
             _ => {
                 //sjekk enhverbarn sin keys.
                 let len_key = self.keys.len();
-                for i in 0..len_key {
+                //TODO HARDCODE THIS LOOP
+                //for i in 0..len_key {
+                //    if key < self.keys[i] {
+                //        //sjekk antall keys i barna
+                //        match self.edges[i].keys.len() {
+                //            3 => {
+                //                //todo sjekk edge igjen
+                //                if self.edges[i].edges.len() == 4 {
+                //                    //Flytt opp median
+                //                    self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
+                //                    //Flytt noden med høyeste key med 2 barn for å bli en barn
+                //                    let mut node = Node::new();
+                //                    node.keys.push_back(self.edges[i].keys.pop_back().unwrap());
+                //                    node.edges.push_back(self.edges[i].edges.pop_back().unwrap());
+                //                    node.edges.push_front(self.edges[i].edges.pop_back().unwrap());
+//
+                //                    self.edges.push_back(node);
+                //                    self.insert_key(key);
+                //                    break
+                //                } else {
+//
+                //                    //flytt median opp
+                //                    self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
+                //                    // og Splitt node
+                //                    let key_0 = self.edges[i].keys.pop_front().unwrap();
+                //                    self.edges.insert(i, Node::new());
+                //                    self.edges[i].keys.push_front(key_0);
+                //                    //insert key
+                //                    self.edges[i].insert_key(key);
+                //                    break
+                //                }
+                //            },
+                //            _ => {
+                //                self.edges[i].insert_key(key);
+                //                break
+                //            },
+                //        }
+                //    }
+                //}
 
-                    if key < self.keys[i] {
-                        //sjekk antall keys i barna
-                        match self.edges[i].keys.len() {
-                            3 => {
-                                //todo sjekk edge igjen
-                                if self.edges[i].edges.len() == 4{
-                                    //Flytt opp median
-                                    self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
-                                    //Flytt noden med høyeste key med 2 barn for å bli en barn
-                                    let mut node = Node::new();
-                                    node.keys.push_back(self.edges[i].keys.pop_back().unwrap());
-                                    node.edges.push_back(self.edges[i].edges.pop_back().unwrap());
-                                    node.edges.push_front(self.edges[i].edges.pop_back().unwrap());
-
-                                    self.edges.push_back(node);
-                                    self.insert_key(key);
-                                    return;
-
-
-                                } else if self.edges[i].edges.is_empty() {
-
-                                    //flytt median opp
-                                    self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
-                                    // og Splitt node
-                                    let key_0 = self.edges[i].keys.pop_front().unwrap();
-                                    self.edges.insert(i, Node::new());
-                                    self.edges[i].keys.push_front(key_0);
-                                    //insert key
-                                    self.edges[i].insert_key(key);
-                                    return;
-                                }
-                            },
-                            _ => {
-                                self.edges[i].insert_key(key);
-                                return;
-                            },
-                        }
-                    }
-
-                    if key > self.keys[len_key - 1]{
-
+                    if key > self.keys[len_key - 1] {
                         match self.edges[len_key].keys.len() {
                             3 => {
-
-                                if self.edges[len_key].edges.len() == 4{
+                                if self.edges[len_key].edges.len() == 4 {
                                     //Flytt opp median
                                     self.keys.insert(len_key, self.edges[len_key].keys.remove(1).unwrap());
                                     //Flytt noden med høyeste key med 2 barn for å bli en barn
@@ -100,8 +96,6 @@ impl Node{
                                     self.edges.push_back(node);
                                     self.insert_key(key);
                                     return;
-
-
                                 } else {
                                     //flytt median opp
                                     self.keys.push_back(self.edges[len_key].keys.remove(1).unwrap());
@@ -121,24 +115,21 @@ impl Node{
                 }
             }
         }
-    }
-    fn contain(&self, key : i32) -> bool {
 
+
+    fn contain(&self, key: i32) -> bool  {
         let len = self.keys.len();
-        for i in 0..len  {
-
+        for i in 0..len {
             if key < self.keys[i] {
                 if self.edges.is_empty() {
                     return false
-                } else { return self.edges[i].contain(key);}
-
+                } else { return self.edges[i].contain(key); }
             } else if key == self.keys[i] {
                 return true;
             }
         }
 
         if key > self.keys[len - 1] {
-
             if self.edges.is_empty() {
                 return false
             } else {
@@ -148,6 +139,25 @@ impl Node{
         false
     }
 
+    fn print_keys(&self) {
+        let key_len = self.keys.len();
+        let mut i = 0;
+
+        for egde in &self.edges {
+            if egde.edges.is_empty() {
+                for key in &egde.keys {
+                    print!("{} ", key);
+                }
+            } else {
+                egde.print_keys();
+            }
+
+            if i < key_len {
+                print!("{} ", self.keys[i]);
+            }
+            i += 1;
+        }
+    }
 }
 
 
@@ -171,7 +181,7 @@ impl BTree{
                     self.root.edges.push_back(child0);
                     self.root.edges.push_back(child1);
 
-                    self.root.insert_key(key);
+
                 },
                 4 => {
 
@@ -192,7 +202,7 @@ impl BTree{
                     self.root.edges.push_back(child0);
                     self.root.edges.push_back(child1);
 
-                    self.root.insert_key(key);
+
                 }
                 _ => panic!("Antall barn som må håndteres {}", self.root.edges.len()),
             }
@@ -220,34 +230,97 @@ mod tests {
 
     #[test]
     fn test_it_works() {
-
         let mut tree = BTree::new();
-        for i in 1..= 10000 {
+        let numbers = [
+            12, 8, 28, 3, 21, 19, 17, 25, 24, 26,
+            14, 4, 22, 11, 27, 13, 2, 10, 18, 15,
+            20, 1, 6, 9, 5, 23, 30, 7, 29, 16
+        ];
+        for i in 1..15 {
             tree.add(i)
         }
 
-        println!("{:?}", tree.root.keys);
+        tree.root.print_keys();
         println!("{:?}", tree.find(100000));
 
 
-        //let len = tree.root.edges.len();
-        //for i in 0..len  {
-        //    println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
-        //    let len2 = tree.root.edges[i].edges.len();
-        //    for j in 0..len2  {
-        //        print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
-        //        let len3 = tree.root.edges[i].edges[j].edges.len();
-        //        for k in 0..len3  {
-        //            println!("");
-        //            print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
-        //            let len4 = tree.root.edges[i].edges[j].edges[k].edges.len();
-        //            for m in 0..len4  {
-        //                println!("");
-        //                print!("leaves{}.leefs{}.more{}.more{}: {:?}   ", i, j, k, m, tree.root.edges[i].edges[j].edges[k].edges[m].keys);
-        //            }
-        //        }
-        //    }
-        //}
+        println!("{:?}", tree.root.keys);
+        let len = tree.root.edges.len();
+        for i in 0..len {
+            println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
+            let len2 = tree.root.edges[i].edges.len();
+            for j in 0..len2 {
+                print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
+                let len3 = tree.root.edges[i].edges[j].edges.len();
+                for k in 0..len3 {
+                    println!("");
+                    print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
+                    let len4 = tree.root.edges[i].edges[j].edges[k].edges.len();
+                    for m in 0..len4 {
+                        println!("");
+                        print!("leaves{}.leefs{}.more{}.more{}: {:?}   ", i, j, k, m, tree.root.edges[i].edges[j].edges[k].edges[m].keys);
+                    }
+                }
+            }
+        }
     }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn node_inserts_key_correctly() {
+            let mut node = Node::new();
+            node.insert_key(5);
+            assert_eq!(node.keys[0], 5);
+        }
+
+        #[test]
+        fn node_inserts_multiple_keys_in_order() {
+            let mut node = Node::new();
+            node.insert_key(5);
+            node.insert_key(3);
+            node.insert_key(7);
+            assert_eq!(node.keys, vec![3, 5, 7]);
+        }
+
+        #[test]
+        fn node_splits_when_inserting_fourth_key() {
+            let mut node = BTree::new();
+            node.add(5);
+            node.add(3);
+            node.add(7);
+            node.add(1);
+            assert_eq!(node.root.keys.len(), 1);
+            assert_eq!(node.root.edges.len(), 2);
+
+        }
+
+        #[test]
+        fn node_contains_key_returns_true_when_key_present() {
+            let mut node = Node::new();
+            node.insert_key(5);
+            assert!(node.contain(5));
+        }
+
+        #[test]
+        fn node_contains_key_returns_false_when_key_absent() {
+            let mut node = Node::new();
+            node.insert_key(5);
+            assert!(!node.contain(3));
+        }
+
+        #[test]
+        fn btree_add_inserts_key_correctly() {
+            let mut btree = BTree::new();
+            btree.add(5);
+            assert_eq!(btree.root.keys[0], 5);
+        }
+
+
+
+    }
+
 
 }

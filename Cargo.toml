@@ -10,9 +10,6 @@ edition = "2021"
 [profile.release]
 debug = true
 
-[[test]]
-name = "test_it_works"
-path = "src/lib.rs"
 
 
 
