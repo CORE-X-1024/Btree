@@ -49,15 +49,32 @@ impl Node{
                         match self.edges[i].keys.len() {
                             3 => {
                                 //todo sjekk edge igjen
-                                //flytt median opp
-                                self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
-                                // og Splitt node
-                                let key_0 = self.edges[i].keys.pop_front().unwrap();
-                                self.edges.insert(i, Node::new());
-                                self.edges[i].keys.push_front(key_0);
-                                //insert key
-                                self.insert_key(key);
-                                return;
+                                if self.edges[i].edges.len() == 4{
+                                    //Flytt opp median
+                                    self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
+                                    //Flytt noden med høyeste key med 2 barn for å bli en barn
+                                    let mut node = Node::new();
+                                    node.keys.push_back(self.edges[i].keys.pop_back().unwrap());
+                                    node.edges.push_back(self.edges[i].edges.pop_back().unwrap());
+                                    node.edges.push_front(self.edges[i].edges.pop_back().unwrap());
+
+                                    self.edges.push_back(node);
+                                    self.insert_key(key);
+                                    return;
+
+
+                                } else if self.edges[i].edges.is_empty() {
+
+                                    //flytt median opp
+                                    self.keys.insert(i, self.edges[i].keys.remove(1).unwrap());
+                                    // og Splitt node
+                                    let key_0 = self.edges[i].keys.pop_front().unwrap();
+                                    self.edges.insert(i, Node::new());
+                                    self.edges[i].keys.push_front(key_0);
+                                    //insert key
+                                    self.edges[i].insert_key(key);
+                                    return;
+                                }
                             },
                             _ => {
                                 self.insert_key(key);
@@ -70,14 +87,31 @@ impl Node{
 
                         match self.edges[len_key].keys.len() {
                             3 => {
-                                //flytt median opp
-                                self.keys.push_back(self.edges[len_key].keys.remove(1).unwrap());
-                                // og Splitt node
-                                let key_1 = self.edges[len_key].keys.pop_back().unwrap();
-                                self.edges.insert(len_key + 1, Node::new());
-                                self.edges[len_key + 1].insert_key(key_1);
-                                //insert key
-                                self.insert_key(key);
+
+                                if self.edges[len_key].edges.len() == 4{
+                                    //Flytt opp median
+                                    self.keys.insert(len_key, self.edges[len_key].keys.remove(1).unwrap());
+                                    //Flytt noden med høyeste key med 2 barn for å bli en barn
+                                    let mut node = Node::new();
+                                    node.keys.push_back(self.edges[len_key].keys.pop_back().unwrap());
+                                    node.edges.push_back(self.edges[len_key].edges.pop_back().unwrap());
+                                    node.edges.push_front(self.edges[len_key].edges.pop_back().unwrap());
+
+                                    self.edges.push_back(node);
+                                    self.insert_key(key);
+                                    return;
+
+
+                                } else {
+                                    //flytt median opp
+                                    self.keys.push_back(self.edges[len_key].keys.remove(1).unwrap());
+                                    // og Splitt node
+                                    let key_1 = self.edges[len_key].keys.pop_back().unwrap();
+                                    self.edges.insert(len_key + 1, Node::new());
+                                    self.edges[len_key + 1].insert_key(key_1);
+                                    //insert key
+                                    self.edges[len_key + 1].insert_key(key);
+                                }
                             },
                             _ => {
                                 self.edges[len_key].insert_key(key);
