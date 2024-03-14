@@ -1,5 +1,4 @@
 use  std::collections::VecDeque;
-use std::os::fd::AsRawFd;
 
 #[derive(Debug)]
 pub struct Node{
@@ -123,6 +122,9 @@ impl Node{
         }
     }
 
+    fn print_keys_recursively(&self) {
+    }
+
 }
 
 
@@ -169,11 +171,16 @@ impl BTree{
 
                     self.root.insert_key(key);
                 }
-                //todo 2,3  barn
-                _ => panic!("{}", self.root.edges.len()),
+                _ => panic!("Antall barn som må håndteres {}", self.root.edges.len()),
             }
         }
     }
+
+    pub fn print_keys(&self) {
+        self.root.print_keys_recursively();
+    }
+
+
 }
 
 
@@ -184,29 +191,33 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
+    fn test_it_works() {
 
         let mut tree = BTree::new();
-        for i in 1..= 20 {
-            tree.add(i);
+        for i in 1..= 1000000 {
+            tree.add(i)
         }
 
-        println!("root : {:?}", tree.root.keys);
 
-        let len = tree.root.edges.len();
-        for i in 0..len  {
-            println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
-            let len2 = tree.root.edges[i].edges.len();
-            for j in 0..len2  {
-                print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
-
-                let len3 = tree.root.edges[i].edges[j].edges.len();
-                for k in 0..len3  {
-                    println!("");
-                    print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
-                }
-            }
-
-        }
+        //println!("{:?}", tree.root.keys);
+        //let len = tree.root.edges.len();
+        //for i in 0..len  {
+        //    println!("leaves{}: {:?}  ", i, tree.root.edges[i].keys);
+        //    let len2 = tree.root.edges[i].edges.len();
+        //    for j in 0..len2  {
+        //        print!("leaves{}.leefs{}: {:?}  ", i, j, tree.root.edges[i].edges[j].keys);
+        //        let len3 = tree.root.edges[i].edges[j].edges.len();
+        //        for k in 0..len3  {
+        //            println!("");
+        //            print!("leaves{}.leefs{}.more{}: {:?}   ", i, j, k, tree.root.edges[i].edges[j].edges[k].keys);
+        //            let len4 = tree.root.edges[i].edges[j].edges[k].edges.len();
+        //            for m in 0..len4  {
+        //                println!("");
+        //                print!("leaves{}.leefs{}.more{}.more{}: {:?}   ", i, j, k, m, tree.root.edges[i].edges[j].edges[k].edges[m].keys);
+        //            }
+        //        }
+        //    }
+        //}
     }
+
 }
