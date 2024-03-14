@@ -7,7 +7,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="NEW BUGS, rev insert error&#10;+ Print medthod">
+    <list default="true" id="c8f68fad-f843-4496-b1cb-7396bba9c6cc" name="Changes" comment="BUGS FIXED">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
@@ -176,7 +176,21 @@
       <option name="presentableId" value="LOCAL−00012" />
       <updated>1710447938822</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL−00013" summary="BUGS FIXED">
+      <option name="closed" value="true" />
+      <created>1710454887566</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1710454887566</updated>
+    </task>
+    <task id="LOCAL−00014" summary="BUGS FIXED">
+      <option name="closed" value="true" />
+      <created>1710454965051</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1710454965051</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,13 +226,13 @@
     <MESSAGE value="insert todo 3 barn is done" />
     <MESSAGE value="INSERT DONE" />
     <MESSAGE value="BUGS is found" />
-    <MESSAGE value="BUGS FIXED" />
     <MESSAGE value="ny bug" />
     <MESSAGE value="BUG2 FIXED" />
     <MESSAGE value="Problemet er løst ved å beholder en situasjon der barn til rooten har 4 barn når de skal splitte" />
     <MESSAGE value="add som print" />
     <MESSAGE value="TRansfer to codespace test" />
     <MESSAGE value="NEW BUGS, rev insert error&#10;+ Print medthod" />
-    <option name="LAST_COMMIT_MESSAGE" value="NEW BUGS, rev insert error&#10;+ Print medthod" />
+    <MESSAGE value="BUGS FIXED" />
+    <option name="LAST_COMMIT_MESSAGE" value="BUGS FIXED" />
   </component>
 </project>

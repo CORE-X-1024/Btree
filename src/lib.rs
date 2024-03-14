@@ -148,7 +148,7 @@ impl Node {
         false
     }
 
-    fn print_keys(&self) {
+    fn print_keys(&self, liste : &mut Vec<i32>) {
         let key_len = self.keys.len();
         let mut i = 0;
 
@@ -156,13 +156,15 @@ impl Node {
             if egde.edges.is_empty() {
                 for key in &egde.keys {
                     print!("{} ", key);
+                    liste.push(key.clone());
                 }
             } else {
-                egde.print_keys();
+                egde.print_keys(liste);
             }
 
             if i < key_len {
                 print!("{} ", self.keys[i]);
+                liste.push(self.keys[i]);
             }
             i += 1;
         }
@@ -190,8 +192,6 @@ impl BTree{
 
                     self.root.edges.push_back(child0);
                     self.root.edges.push_back(child1);
-
-
                 },
                 4 => {
 
@@ -211,14 +211,13 @@ impl BTree{
 
                     self.root.edges.push_back(child0);
                     self.root.edges.push_back(child1);
-
-
                 }
                 _ => panic!("Antall barn som må håndteres {}", self.root.edges.len()),
             }
 
 
         } else if root_len == 2 && !self.root.edges.is_empty(){
+            //TODO FIX LOGIKK HER
 
             //sjekk om barn er fult
             for m in 0..root_len{
@@ -235,9 +234,7 @@ impl BTree{
 
                             self.root.edges[m].edges.push_back(child0);
                             self.root.edges[m].edges.push_back(child1);
-                            break
-
-
+                            return;
                         },
                         4 => {
 
@@ -257,15 +254,14 @@ impl BTree{
 
                             self.root.edges[m].edges.push_back(child0);
                             self.root.edges[m].edges.push_back(child1);
-                            break
-
+                            return;
 
                         }
                         _ => panic!("Antall barn som må håndteres {}", self.root.edges[m].edges.len()),
 
                     }
                 }
-            }
+            } return;
 
         }
     }
@@ -290,19 +286,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_it_works() {
+    fn insert_rev() {
         let mut tree = BTree::new();
         let numbers = [
             12, 8, 28, 3, 21, 19, 17, 25, 24, 26,
             14, 4, 22, 11, 27, 13, 2, 10, 18, 15,
-            20, 1, 6, 9, 5, 23, 30, 7, 29, 16 , 31,
+            20, 1, 6, 9, 5, 23, 30, 7, 29, 16, 31,
         ];
-        for i in numbers{
+        for i in (0..40).rev() {
             tree.add(i)
         }
 
-        tree.root.print_keys();
-        println!("{:?}", tree.find(100000));
+
 
 
         //println!("{:?}", tree.root.keys);
@@ -324,6 +319,58 @@ mod tests {
         //        }
         //    }
         //}
+    }
+
+    #[test]
+    fn insert_in_ascending_order() {
+        let mut tree = BTree::new();
+        let mut list = Vec::new();
+        let mut vec: Vec<i32> = (1..=40).collect();
+        for i in 1..=40 {
+            tree.add(i);
+        }
+
+        tree.root.print_keys(&mut list);
+        assert_eq!(list, vec);
 
     }
+
+    #[test]
+    fn insert_in_descending_order() {
+        let mut tree = BTree::new();
+        let mut list = Vec::new();
+        let mut vec: Vec<i32> = (0..40).collect();
+        for i in (0..40).rev() {
+            tree.add(i);
+        }
+
+        tree.root.print_keys(&mut list);
+        assert_eq!(list, vec);
+    }
+
+    #[test]
+    fn insert_in_random_order() {
+        let mut tree = BTree::new();
+        let numbers = [
+            12, 8, 28, 3, 21, 19, 17, 25, 24, 26,
+            14, 4, 22, 11, 27, 13, 2, 10, 18, 15,
+            20, 1, 6, 9, 5, 23, 30, 7, 29, 16, 31,
+        ];
+        for &i in numbers.iter() {
+            tree.add(i);
+        }
+        assert_eq!(tree.root.contain(20), true);
+        assert_eq!(tree.root.contain(40), false);
+    }
+
+    #[test]
+    fn insert_duplicate_values() {
+        let mut tree = BTree::new();
+        for _ in 0..40 {
+            tree.add(10);
+        }
+        assert_eq!(tree.root.contain(10), true);
+        assert_eq!(tree.root.contain(20), false);
+    }
+
 }
